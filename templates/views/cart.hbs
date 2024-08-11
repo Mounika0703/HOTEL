@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>header}}
+<body>
+    {{>navbar}}
+    <div class="sub-header cart">
+        <div class="overlay rem cart">
+            <div class="sub-header-content">
+                <h5>Luxury Hotel</h5>
+                <h1>Book Now</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        
+        <div class="numbers">
+            <div class="number one active">
+                <a href="#"><span>1</span></a>
+                <p>Cart</p>
+            </div>
+            <div class="number two">
+                <a href="#"><span>2</span></a>
+                <p>Pay</p>
+            </div>
+            <div class="number three">
+                <a href="#"><span>3</span></a>
+                <p>Booked</p>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <form action="/rooms" class="home-form cart-form" method="post">
+        <div class="form-item">
+            <input type="text" class="indate" placeholder="Check in" onfocus="(this.type='date')" required>
+            <input type="text" class="outdate" placeholder="Check out" onfocus="(this.type='date')" required>
+            <div class="value">
+                <select class="select">
+                    <option value="1">1 Adult</option>
+                    <option value="2">2 Adults</option>
+                    <option value="3">3 Adults</option>
+                    <option value="4">4 Adults</option>
+                </select>
+            </div>
+            <div class="value">
+                <select>
+                    <div class="options">
+                        <option value="0" class="select">0 Child</option>
+                        <option value="1" class="select">1 Child</option>
+                        <option value="2" class="select">2 Children</option>
+                        <option value="3" class="select">3 Children</option>
+                        <option value="4" class="select">4 Children</option>
+                    </div>
+                </select>
+            </div>
+            <button type="submit" class="submit search-form">Search</button>
+        </div>
+    </form>
+    <div class="cart-content">
+        <h1>Your stay</h1>
+        <div class="dates">
+        </div>
+        <hr class="hr">
+        <div class="cart-items">
+        </div>
+        <div class="book-now">
+            <h1>
+                <span>Total : $</span>
+                <span>0</span>
+            </h1>
+            {{#if logined}}
+            <button onclick="booknowalert()" class="book-now-btn">Book Now</button>
+            {{else}}
+            <button onclick='alert("Please Login before you continue..");window.location.href="/login";' class="book-now-btn">Book Now</button>
+            {{/if}}
+        </div>
+    </div>
+    <div class="cart-message">
+        <div class="cart-message-inner">
+            <i class="fa-solid fa-thumbs-down"></i><br>
+            <p>Oops!!!<br>The Cart is empty..</p>
+            <button onclick="alertremove()">OK</button>
+        </div>
+    </div>
+    {{>footer}}
+    <script src="scripts/index.js"></script>
+</body>
+</html>

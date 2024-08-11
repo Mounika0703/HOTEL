@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>header}}
+<body>
+    {{>navbar}}
+    <div class="sub-header cart">
+        <div class="overlay rem cart">
+            <div class="sub-header-content">
+                <h5>Luxury Hotel</h5>
+                <h1>Booking Success</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        
+        <div class="numbers">
+            <div class="number one">
+                <a href="#"><span>1</span></a>
+                <p>Cart</p>
+            </div>
+            <div class="number two">
+                <a href="#"><span>2</span></a>
+                <p>Pay</p>
+            </div>
+            <div class="number three active">
+                <a href="#"><span>3</span></a>
+                <p>Booked</p>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <h1 style="text-align: center;">Your Payment is successful!!..</h1>
+    <div class="booked">
+        <div style="font-size: 25px; font-weight:bold;">Booking Details</div>
+        <div class="bookingdatesfromto"></div>
+        <div class="bookingdetailsinbookedpage"></div>
+    </div>
+    {{>footer}}
+    <script>
+            // Set booking success flag
+            localStorage.setItem('bookingSuccess', 'true');
+            localStorage.setItem('bookingDetails', JSON.stringify({
+        rooms: JSON.parse(localStorage.getItem('rooms')),
+        searchdata: JSON.parse(localStorage.getItem('searchdata'))
+    }));
+            var bookingdetails=document.querySelector('.bookingdetailsinbookedpage');
+            var bookingdetailscontent='';
+            JSON.parse(localStorage.getItem('rooms')).map(data=>{
+            bookingdetailscontent+=`
+                <div class="bookeditems">
+                    <div class="">Room Type:${data.name}</div>
+                    <div class="">Number of Rooms:${data.quantity}</div>
+                    <div class="">Total Price:$${data.price} ${data.priceperiod}</div>
+                </div>`
+            });
+            bookingdetails.innerHTML+=bookingdetailscontent;
+            //localStorage.clear();
+            var cartdatescontent='';
+            var datesfrom=document.querySelector('.bookingdatesfromto');
+            if (datesfrom) {
+            JSON.parse(localStorage.getItem('searchdata')).map(data => {
+                cartdatescontent += `
+                    <p>Your dates <br> From ${data.checkindate} <br> To ${data.checkoutdate} <br> ${data.adultsno} Adults , ${data.childreno} Children</p>`;
+            });
+            datesfrom.innerHTML = cartdatescontent;
+        }
+   document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('bookingSuccess')) {
+        // You might want to clear it immediately if it exists
+        localStorage.removeItem('rooms');
+        localStorage.removeItem('searchdata');
+    }
+});
+    </script>
+    <script src="scripts/index.js"></script>
+</body>
+</html>

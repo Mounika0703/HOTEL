@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>head}}
+<body>     
+    <header class="detailsHeader">
+        {{!-- <a href="#" class="logo" style="color: white;"><b><i>MK</i></b></a> --}}
+        <a href="#"><img src="img/logo.png" class="logo"></a>
+        <ul class="navigation" >
+            <li><a href="/index">Home</a></li>
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+</header>
+    <div class="home">
+        <h1 style="text-align: center;">Account</h1>
+        <div class="details">
+            <div class="det">Name : {{empfName}} {{emplName}}</div>
+            {{!-- <div class="det">Last Name : {{emplName}}</ediv> --}}
+            <div class="det">Email : {{empEmail}}</div>
+            <div class="det">Phone : {{empPhone}}</div>
+            {{!-- <div class="det">Age : {{empAge}}</div>
+            <div class="det">Gender : {{empGender}}</div> --}}
+        </div>
+        <div class="bookingDetails">
+            <h3>Booking Details</h3>
+            <div class="bookingdatesfromto"></div>
+            <div class="bookingdetailsinbookedpage"></div>    
+        </div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Check if booking details are available
+    if (localStorage.getItem('bookingSuccess') === 'true' || localStorage.bookingDetails!=[]) {
+        var bookingdetails = document.querySelector('.bookingdetailsinbookedpage');
+        var bookingdetailscontent = '';
+        var bookingDetails = JSON.parse(localStorage.getItem('bookingDetails')) || {};
+        
+        if (bookingDetails.rooms && bookingDetails.searchdata) {
+            var rooms = bookingDetails.rooms;
+            var searchdata = bookingDetails.searchdata;
+            
+            // Create content for booked rooms
+            rooms.forEach(data => {
+                bookingdetailscontent += `
+                    <div class="bookeditems">
+                        <div class="">Room Type: ${data.name}</div>
+                        <div class="">Number of Rooms: ${data.quantity}</div>
+                        <div class="">Total Price: $${data.price} ${data.priceperiod}</div>
+                    </div>`;
+            });
+            bookingdetails.innerHTML = bookingdetailscontent;
+
+            // Create content for booking dates
+            var cartdatescontent = '';
+            var datesfrom = document.querySelector('.bookingdatesfromto');
+            if (datesfrom) {
+                searchdata.forEach(data => {
+                    cartdatescontent += `
+                        <p>Your dates <br> From ${data.checkindate} <br> To ${data.checkoutdate} <br> ${data.adultsno} Adults, ${data.childreno} Children</p>`;
+                });
+                datesfrom.innerHTML = cartdatescontent;
+            }
+        }
+    }
+});
+
+</script>
+
+
+</body>
+</html>

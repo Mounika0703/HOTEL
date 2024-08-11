@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>header}}
+<body>
+    {{>navbar}}
+    <header>
+        <div class="overlay">
+        <div class="header-content">
+            <span class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>                
+            </span>
+            <h4>Luxury Hotel & Best Resort</h4>
+            <h1>Enjoy a Luxury <span class="break-word">Experience</span></h1>
+            <a href="/rooms">Rooms</a>
+        </div>
+    </div>
+    </header>
+    <form action="/rooms" class="home-form" method="POST">
+        <div class="form-item">
+            <input type="text" class="date" placeholder="Check in" onfocus="(this.type='date')" required>
+            <input type="text" class="date" placeholder="Check out" onfocus="(this.type='date')" required>
+            <div class="value">
+                <select class="select" required>
+                    <option value="1">1 Adult</option>
+                    <option value="2">2 Adults</option>
+                    <option value="3">3 Adults</option>
+                    <option value="4">4 Adults</option>
+                </select>
+            </div>
+            <div class="value">
+                <select class="select" required>
+                    <option value="1">0 Child</option>
+                    <option value="1">1 Child</option>
+                    <option value="2">2 Children</option>
+                    <option value="3">3 Children</option>
+                    <option value="4">4 Children</option>
+                </select>
+            </div>
+            <button type="submit" class="submit  search-form">Search</button>
+        </div>
+    </form>
+    <div class="about-content">
+        <div class="left">
+            <h1>About</h1>
+            <p>Unveil the allure of The Cappa Luxury Hotel, where each moment is a testament to refined living. Established with a commitment to timeless elegance, our hotel seamlessly blends modern luxury with exceptional service. From the meticulously designed rooms to the dedicated staff, every aspect reflects our passion for hospitality. At The Cappa Luxury Hotel, we pride ourselves on providing an unforgettable experience. Whether you're here for a special occasion, a corporate event, or a leisurely escape, our goal is to exceed your expectations. Join us on a journey where luxury knows no bounds, and every stay is a celebration of sophistication and warmth.</p>
+        
+        </div>
+        <div class="right">
+            <div class="right-inner">
+                <img class="logo" src="img/4.jpg" alt="img">
+                <img src="img/5.jpg" alt="img">
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+    <script src="scripts/index.js"></script>
+</body>
+</html>
